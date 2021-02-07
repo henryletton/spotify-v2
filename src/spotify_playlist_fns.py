@@ -20,9 +20,9 @@ def get_my_playlists():
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public,
+                                               scope="playlist-modify-public",
                                                show_dialog = True,
-                                               open_browser = False"))
+                                               open_browser = False))
     
     # Loop through 50 playlists at a time, adding to list
     playlist_list = []
