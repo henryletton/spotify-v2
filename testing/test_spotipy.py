@@ -26,7 +26,9 @@ load_dotenv()
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public"))
+                                               scope="playlist-modify-public",
+                                               show_dialog = True,
+                                               open_browser = False))
                                                #scope="user-read-recently-played"))
 
 #%% Test reading

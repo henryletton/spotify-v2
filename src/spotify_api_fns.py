@@ -76,7 +76,9 @@ def get_artist_info(artist_id,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="user-read-recently-played"))
+                                               scope="user-read-recently-played",
+                                               show_dialog = True,
+                                               open_browser = False))
     
     # Get artist details and catch errors
     art_id_df = pd.DataFrame({'Artist_Id' : [artist_id]})
@@ -152,7 +154,9 @@ def get_album_info(album_id,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="user-read-recently-played"))
+                                               scope="user-read-recently-played",
+                                               show_dialog = True,
+                                               open_browser = False))
     
     # Get album details and catch errors
     alb_id_df = pd.DataFrame({'Album_Id' : [album_id]})
@@ -231,7 +235,9 @@ def get_track_info(track_id,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="user-read-recently-played"))
+                                               scope="user-read-recently-played",
+                                               show_dialog = True,
+                                               open_browser = False))
     
     # Get album details and catch errors
     tra_id_df = pd.DataFrame({'Track_Id' : [track_id]})
@@ -324,7 +330,7 @@ def get_track_info(track_id,
 
 #test_dict = get_artist_info('0LyfQWJT6nXafLPZqxe9Of')
 #test_artist2 = sp.artist_albums('0LyfQWJT6nXafLPZqxe9Of', limit=50, country="GB")
-test_dict2 = get_album_info("001hiwQqutaP5krx5mhqh6")
+#test_dict2 = get_album_info("001hiwQqutaP5krx5mhqh6")
 # test_dict3 = get_track_info('00cqd6ZsSkLZqGMlQCR0Zo')
 
 # test_rp = get_recently_played_df()

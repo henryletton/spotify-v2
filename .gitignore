@@ -1,3 +1,4 @@
 .env
 .cache
+.cache-henryletton
 __pycache__
