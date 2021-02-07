@@ -24,7 +24,9 @@ def get_recently_played_df():
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                    client_secret=os.environ.get('spotify_client_secret'),
                                                    redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                                   scope="user-read-recently-played"))
+                                                   scope="user-read-recently-played",
+                                               show_dialog = True,
+                                               open_browser = False))
     
     # Get recently played
     rec_played = sp.current_user_recently_played()
@@ -310,34 +312,3 @@ def get_track_info(track_id,
     tr_df_dict["map_al_ar"] = map_al_ar
     
     return tr_df_dict
-
-
-
-
-
-#%% Testing
-
-# album_id = '1cSBYcI0dxzizxisfAk4bE'
-# album_id = '00cV918s33ucbpFc5jaKI7'
-# track_id = '00cqd6ZsSkLZqGMlQCR0Zo'
-
-# # Connect to my spotify app
-# sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
-#                                            client_secret=os.environ.get('spotify_client_secret'),
-#                                            redirect_uri=os.environ.get('spotify_redirect_uri'),
-#                                            scope="user-read-recently-played"))
-
-
-#test_dict = get_artist_info('0LyfQWJT6nXafLPZqxe9Of')
-#test_artist2 = sp.artist_albums('0LyfQWJT6nXafLPZqxe9Of', limit=50, country="GB")
-#test_dict2 = get_album_info("001hiwQqutaP5krx5mhqh6")
-# test_dict3 = get_track_info('00cqd6ZsSkLZqGMlQCR0Zo')
-
-# test_rp = get_recently_played_df()
-# test_rp['rec_tracks'].describe(include='all')
-
-# track_details = sp.track(track_id) #Multiple tracks at once
-# track_details2 = sp.audio_analysis(track_id) #Not this one
-# track_details3 = sp.audio_features(track_id) #Multiple?
-
-

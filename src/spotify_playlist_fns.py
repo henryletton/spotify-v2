@@ -153,14 +153,3 @@ def playlist_total_plays(engine,
     update_playlist(playlist_name, Music_Track_Plays['Track_Id'], "add_new")
     
     return
-
-#%% Testing
-# test = get_my_playlists()
-# test2 = get_tracks_from_playlist_id('1dNTdytn74c4m2ryYeNOMD')
-# test3 = get_playlist_id('Test 2')
-
-# update_playlist("Test 2", ['121so7t3AeX6nLMvxy9ZP9','0QFb9H22cwxDaMI8C6Vy1s'], "add_remove")
-
-# get_playlist_id("Test 1")
-
-
