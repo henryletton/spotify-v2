@@ -90,3 +90,13 @@ CREATE TABLE Music_Genres (
 	Type TEXT,
 	PRIMARY KEY (Id(30),Genre(50),Type(10))
 )
+
+/*Table for process log, not specific to this project*/
+CREATE TABLE Event_Log (
+	Event_Key INT AUTO_INCREMENT PRIMARY KEY,
+	Project TEXT,
+	Process TEXT,
+	Details TEXT,
+	Event_Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
