@@ -24,7 +24,7 @@ def get_recently_played_df():
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                    client_secret=os.environ.get('spotify_client_secret'),
                                                    redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                                   scope="user-read-recently-played",
+                                                   scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
     
@@ -78,7 +78,7 @@ def get_artist_info(artist_id,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="user-read-recently-played",
+                                               scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
     
@@ -237,7 +237,7 @@ def get_track_info(track_id,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="user-read-recently-played",
+                                               scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
     

@@ -20,7 +20,7 @@ def get_my_playlists():
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public",
+                                               scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
     
@@ -45,7 +45,7 @@ def get_tracks_from_playlist_id(playlist_id):
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public",
+                                               scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
     
@@ -87,7 +87,7 @@ def get_playlist_id(playlist_name):
         sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                    client_secret=os.environ.get('spotify_client_secret'),
                                                    redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                                   scope="playlist-modify-public",
+                                                   scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
         new_playlist = sp.user_playlist_create(sp.current_user()['id'], playlist_name)
@@ -106,7 +106,7 @@ def update_playlist(playlist_name,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public",
+                                               scope="playlist-modify-public user-read-recently-played",
                                                show_dialog = True,
                                                open_browser = False))
     
