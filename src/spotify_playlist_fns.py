@@ -45,9 +45,9 @@ def get_tracks_from_playlist_id(playlist_id):
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public,
+                                               scope="playlist-modify-public",
                                                show_dialog = True,
-                                               open_browser = False"))
+                                               open_browser = False))
     
     # Loop through 50 playlists at a time, adding to list
     track_list = []
@@ -87,9 +87,9 @@ def get_playlist_id(playlist_name):
         sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                    client_secret=os.environ.get('spotify_client_secret'),
                                                    redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                                   scope="playlist-modify-public,
+                                                   scope="playlist-modify-public",
                                                show_dialog = True,
-                                               open_browser = False"))
+                                               open_browser = False))
         new_playlist = sp.user_playlist_create(sp.current_user()['id'], playlist_name)
         return new_playlist['id']
     
@@ -106,9 +106,9 @@ def update_playlist(playlist_name,
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
                                                client_secret=os.environ.get('spotify_client_secret'),
                                                redirect_uri=os.environ.get('spotify_redirect_uri'),
-                                               scope="playlist-modify-public,
+                                               scope="playlist-modify-public",
                                                show_dialog = True,
-                                               open_browser = False"))
+                                               open_browser = False))
     
     # Use playlist name to get playlist and track ids
     playlist_id = get_playlist_id(playlist_name)
