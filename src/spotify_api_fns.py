@@ -261,26 +261,37 @@ def get_track_info(track_id,
         return tr_df_dict
     
     # Store in df
-    track_details_df = pd.DataFrame({'Track_Id' : [track_details['id']],
-                                      'Track_Name' : [track_details['name']],
-                                      'Danceability' : [track_details2[0]['danceability']],
-                                      'Energy' : [track_details2[0]['energy']],
-                                      'Loudness' : [track_details2[0]['loudness']],
-                                      'Speechiness' : [track_details2[0]['speechiness']],
-                                      'Acousticness' : [track_details2[0]['acousticness']],
-                                      'Instrumentalness' : [track_details2[0]['instrumentalness']],
-                                      'Liveness' : [track_details2[0]['liveness']],
-                                      'Valence' : [track_details2[0]['valence']],
-                                      'Tempo' : [track_details2[0]['tempo']],
-                                      'Time_Signature' : [track_details2[0]['time_signature']],
-                                      'Track_Duration_ms' : [track_details['duration_ms']],
-                                      'Explicit_Track' : [track_details['explicit']],
-                                      'Track_Number' : [track_details['track_number']],
-                                      'Disc_Number' : [track_details['disc_number']],
-                                      'Key' : [track_details2[0]['key']],
-                                      'Mode' : [track_details2[0]['mode']],
-                                      'Track_Popularity' : [track_details['popularity']],
-                                      'ISRC' : [track_details['external_ids']['isrc']]})
+    if track_details2[0] is None:
+        track_details_df = pd.DataFrame({'Track_Id' : [track_details['id']],
+                                          'Track_Name' : [track_details['name']],
+                                          'Track_Duration_ms' : [track_details['duration_ms']],
+                                          'Explicit_Track' : [track_details['explicit']],
+                                          'Track_Number' : [track_details['track_number']],
+                                          'Disc_Number' : [track_details['disc_number']],
+                                          'Track_Popularity' : [track_details['popularity']],
+                                          'ISRC' : [track_details['external_ids']['isrc']]})
+        
+    else:
+        track_details_df = pd.DataFrame({'Track_Id' : [track_details['id']],
+                                          'Track_Name' : [track_details['name']],
+                                          'Danceability' : [track_details2[0]['danceability']],
+                                          'Energy' : [track_details2[0]['energy']],
+                                          'Loudness' : [track_details2[0]['loudness']],
+                                          'Speechiness' : [track_details2[0]['speechiness']],
+                                          'Acousticness' : [track_details2[0]['acousticness']],
+                                          'Instrumentalness' : [track_details2[0]['instrumentalness']],
+                                          'Liveness' : [track_details2[0]['liveness']],
+                                          'Valence' : [track_details2[0]['valence']],
+                                          'Tempo' : [track_details2[0]['tempo']],
+                                          'Time_Signature' : [track_details2[0]['time_signature']],
+                                          'Track_Duration_ms' : [track_details['duration_ms']],
+                                          'Explicit_Track' : [track_details['explicit']],
+                                          'Track_Number' : [track_details['track_number']],
+                                          'Disc_Number' : [track_details['disc_number']],
+                                          'Key' : [track_details2[0]['key']],
+                                          'Mode' : [track_details2[0]['mode']],
+                                          'Track_Popularity' : [track_details['popularity']],
+                                          'ISRC' : [track_details['external_ids']['isrc']]})
     
     # Store in dictionary
     tr_df_dict["track_details_df"] = track_details_df

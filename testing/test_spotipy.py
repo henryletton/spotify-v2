@@ -68,4 +68,23 @@ specific_playlist_tracks = sp.playlist_tracks('1dNTdytn74c4m2ryYeNOMD', offset =
 #playlist_add_items, playlist_remove_all_occurrences_of_items
 test0 = sp.user_playlist_create(sp.current_user()['id'], 'Test')
 
+#%%
+from src.spotify_api_fns import get_track_info
+from src.spotify_db_fns import create_engine2
+from src.spotify_db_fns import sql_db_to_df
 
+engine = create_engine2()
+
+Music_Refresh_Track = sql_db_to_df(engine = engine, table_name = 'Music_Refresh_Track')
+
+for track_id in Music_Refresh_Track['Track_Id']:
+    print(track_id)
+    track_info =get_track_info(track_id, get_artists = True)
+
+track_info =get_track_info('6T7MwlnXmLQZkrtDPEPnsz', get_artists = True)
+
+track_details = sp.track('6T7MwlnXmLQZkrtDPEPnsz')
+track_details2 = sp.audio_features('6ru5RW6zrh0kEfTBsKI88n')
+
+if track_details2[0] is None:
+    print('ok')
