@@ -323,3 +323,53 @@ def get_track_info(track_id,
     tr_df_dict["map_al_ar"] = map_al_ar
     
     return tr_df_dict
+
+#%% Get top track id for text search
+def search_track_id(search):
+    
+    # Connect to my spotify app
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
+                                               client_secret=os.environ.get('spotify_client_secret'),
+                                               redirect_uri=os.environ.get('spotify_redirect_uri'),
+                                               scope="playlist-modify-public user-read-recently-played",
+                                               show_dialog = True,
+                                               open_browser = False))
+    
+    # Search for only top track
+    track_search = sp.search(search,
+                           limit=1,
+                           type='track',
+                           market='GB')
+    
+    return track_search['tracks']['items'][0]['id']
+
+#%% Get track ids for multiple searches
+def searches_track_ids(search_list):
+
+    track_id_list = []
+    
+    for search in search_list:
+        
+        search = str(search)
+        search_stripped = search.split(' ft ', 1)[0]
+        search_stripped2 = search_stripped.split(' & ', 1)[0]
+        search_stripped3 = search_stripped2.split(' vs ', 1)[0]
+        search_stripped4 = search_stripped3.split(' feat. ', 1)[0]
+        
+        try:
+            track_id = search_track_id(search_stripped4)
+            track_id_list.append(track_id)
+        except:
+            print(f'Search for {search} failed')
+            
+    return track_id_list
+
+
+# track_search = sp.search('We No Speak Americano - Yolanda Be Cool',
+#                            limit=1,
+#                            type='track',
+#                            market='GB')
+
+
+# text = 'We No Speak Americano - Yolanda Be Cool vs D Cup'
+# text.split(' vs ', 1)[0]

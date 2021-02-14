@@ -133,10 +133,11 @@ def update_playlist(playlist_name,
     # Add new tracks maintaining order and keeping duplicates
     elif update_type =="add_order":
         print('Need to code this up')
+        sp.playlist_add_items(playlist_id, track_ids)
         
     return
 
-# Playlist accoding to total plays
+#%% Playlist accoding to total plays
 def playlist_total_plays(engine,
                          playlist_name,
                          min_plays):

@@ -36,21 +36,22 @@ LIMIT 100
 
 /*Tracks in refresh order*/
 CREATE VIEW Music_Refresh_Track AS
-(SELECT a.Track_Id, a.Track_Name, a.Track_Duration_ms, a.Timestamp
+(SELECT a.Track_Id, a.Track_Name, a.Track_Duration_ms, a.Timestamp, a.ISRC, CASE WHEN b.DateTime IS NOT NULL THEN 1 ELSE 0 END AS Played
 FROM Music_Tracks as a
 LEFT JOIN Music_Track_Listens as b
 ON a.Track_Id = b.Track_Id)
 UNION
-(SELECT c.Track_Id, c.Track_Name, c.Track_Duration_ms, c.Timestamp
+(SELECT d.Track_Id, c.Track_Name, c.Track_Duration_ms, c.Timestamp, c.ISRC, 1 as Played
 FROM Music_Tracks as c
 RIGHT JOIN Music_Track_Listens as d
 ON c.Track_Id = d.Track_Id
 WHERE c.Track_Id IS NULL)
 ORDER BY isnull(Track_Name) DESC,
 isnull(Track_Duration_ms) DESC,
-isnull(Timestamp) DESC,
+isnull(ISRC) DESC,
+Played DESC,
 Timestamp
-LIMIT 100
+LIMIT 1000
 
 /*Summarise each id for total listens*/
 CREATE VIEW Music_Track_Plays AS
