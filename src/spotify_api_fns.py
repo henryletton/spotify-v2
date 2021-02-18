@@ -178,14 +178,20 @@ def get_album_info(album_id,
                       'error' : alb_id_df}
         return al_df_dict
     
+    
     # Store in df
     album_details_df = pd.DataFrame({'Album_Id' : [album_details['id']],
                                       'Album_Name' : [album_details['name']],
                                       'Release_Date' : (album_details['release_date']+'-01-01')[0:10],
                                       'Total_Tracks' : [album_details['total_tracks']],
                                       'Album_Type' : [album_details['album_type']],
-                                      'Label' : [album_details['label']],
-                                      'UPC' : [album_details['external_ids']['upc']]})
+                                      'Label' : [album_details['label']]})
+    
+    # UPC does not exist for all albums
+    try:
+        album_details_df['UPC'] = [album_details['external_ids']['upc']]
+    except:
+        print(f'UPC does not exist for {album_details["name"]}')
     
     # Store in dictionary
     al_df_dict["album_details_df"] = album_details_df
@@ -365,11 +371,4 @@ def searches_track_ids(search_list):
     return track_id_list
 
 
-# track_search = sp.search('We No Speak Americano - Yolanda Be Cool',
-#                            limit=1,
-#                            type='track',
-#                            market='GB')
 
-
-# text = 'We No Speak Americano - Yolanda Be Cool vs D Cup'
-# text.split(' vs ', 1)[0]
