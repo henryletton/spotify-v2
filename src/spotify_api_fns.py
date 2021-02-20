@@ -274,8 +274,7 @@ def get_track_info(track_id,
                                           'Explicit_Track' : [track_details['explicit']],
                                           'Track_Number' : [track_details['track_number']],
                                           'Disc_Number' : [track_details['disc_number']],
-                                          'Track_Popularity' : [track_details['popularity']],
-                                          'ISRC' : [track_details['external_ids']['isrc']]})
+                                          'Track_Popularity' : [track_details['popularity']]})
         
     else:
         track_details_df = pd.DataFrame({'Track_Id' : [track_details['id']],
@@ -296,8 +295,13 @@ def get_track_info(track_id,
                                           'Disc_Number' : [track_details['disc_number']],
                                           'Key' : [track_details2[0]['key']],
                                           'Mode' : [track_details2[0]['mode']],
-                                          'Track_Popularity' : [track_details['popularity']],
-                                          'ISRC' : [track_details['external_ids']['isrc']]})
+                                          'Track_Popularity' : [track_details['popularity']]})
+    
+    # ISRC does not exist for all tracks
+    try:
+        track_details_df['ISRC'] = [track_details['external_ids']['isrc']]
+    except:
+        print(f'ISRC does not exist for {track_details["name"]}')
     
     # Store in dictionary
     tr_df_dict["track_details_df"] = track_details_df
