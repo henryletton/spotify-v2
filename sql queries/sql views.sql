@@ -21,7 +21,7 @@ FROM (
 		c.TimeStamp
 ) as x
 WHERE x.row_num = 1
-LIMIT 100
+LIMIT 100;
 
 /*Albums in refresh order*/
 CREATE VIEW Music_Refresh_Album AS
@@ -32,14 +32,15 @@ ORDER BY isnull(Album_Id) DESC,
     isnull(Release_Date) DESC,
     isnull(Total_Tracks) DESC,
     TimeStamp
-LIMIT 100
+LIMIT 1000;
 
 /*Tracks in refresh order*/
 CREATE VIEW Music_Refresh_Track AS
 (SELECT a.Track_Id, a.Track_Name, a.Track_Duration_ms, a.Timestamp, a.ISRC, CASE WHEN b.DateTime IS NOT NULL THEN 1 ELSE 0 END AS Played
 FROM Music_Tracks as a
 LEFT JOIN Music_Track_Listens as b
-ON a.Track_Id = b.Track_Id)
+ON a.Track_Id = b.Track_Id
+WHERE CAST(a.Timestamp as date) < CURDATE() - 7 OR a.Track_Name IS NULL)
 UNION
 (SELECT d.Track_Id, c.Track_Name, c.Track_Duration_ms, c.Timestamp, c.ISRC, 1 as Played
 FROM Music_Tracks as c
@@ -51,7 +52,7 @@ isnull(Track_Duration_ms) DESC,
 isnull(ISRC) DESC,
 Played DESC,
 Timestamp
-LIMIT 1000
+LIMIT 1000;
 
 /*Summarise each id for total listens*/
 CREATE VIEW Music_Track_Plays AS
