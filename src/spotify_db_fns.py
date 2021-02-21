@@ -102,3 +102,23 @@ def removed_from_spotify(engine, given_ids, id_type):
     
     return
     
+#%% Get dataframe from given sql
+def df_from_sql(engine,
+                sql_query):
+    
+    # Connect to database
+    engine.connect()
+    
+    # Execute query and return dataframe
+    try:
+        df = pd.read_sql_query(sql_query, engine)
+        return df
+    
+    except:
+        print('Query failed. Empty dataframe returned.')
+        return pd.DataFrame()
+    
+
+
+
+
