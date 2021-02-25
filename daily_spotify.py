@@ -53,4 +53,4 @@ AND iTunes_Plays >= 5;
 
 
 # Log end of playlist refresh
-log_process(engine, "Spotify", "Refresh Playlists", "end")
+log_process(engine, "Spotify", "Refresh Playlists", "End")
