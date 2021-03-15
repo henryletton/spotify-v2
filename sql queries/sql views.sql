@@ -21,7 +21,7 @@ FROM (
 		c.TimeStamp
 ) as x
 WHERE x.row_num = 1
-LIMIT 100;
+LIMIT 25;
 
 /*Albums in refresh order*/
 CREATE VIEW Music_Refresh_Album AS
@@ -32,7 +32,7 @@ ORDER BY isnull(Album_Id) DESC,
     isnull(Release_Date) DESC,
     isnull(Total_Tracks) DESC,
     TimeStamp
-LIMIT 1000;
+LIMIT 500;
 
 /*Tracks in refresh order*/
 CREATE VIEW Music_Refresh_Track AS
@@ -52,7 +52,7 @@ isnull(Track_Duration_ms) DESC,
 isnull(ISRC) DESC,
 Played DESC,
 Timestamp
-LIMIT 1000;
+LIMIT 2500;
 
 /*Summarise each id for total listens*/
 CREATE VIEW Music_Track_Plays AS
