@@ -72,7 +72,9 @@ def get_recently_played_df():
 
 #%% Get artist information
 def get_artist_info(artist_id,
-                  get_albums = True):
+                  get_albums = True,
+                  # Avoid large numbers of albums by not fetching compilation and appears_on
+                  album_types = ['album','single']):
     
     # Connect to my spotify app
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
@@ -127,7 +129,8 @@ def get_artist_info(artist_id,
         album_ids = []
         
         while num_albums > offset:
-            artist_details2 = sp.artist_albums(artist_id, limit=50, country="GB", offset=offset)
+            artist_details2 = sp.artist_albums(artist_id, limit=50, country="GB", 
+                                               offset=offset, album_type=album_types)
             num_albums = artist_details2['total']
             if artist_details2['items']:
                 album_ids += list(pd.DataFrame(artist_details2['items'])['id'])
