@@ -121,7 +121,7 @@ def update_artists(engine, update_albums = True):
     return
 
 #%% Update album information
-def update_albums(engine, update_tracks = True):
+def update_albums(engine, update_tracks = False):
     
     # Connect to database
     engine.connect()

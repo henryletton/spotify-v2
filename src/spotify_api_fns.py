@@ -153,7 +153,7 @@ def get_artist_info(artist_id,
 
 #%% Get album information
 def get_album_info(album_id,
-                   get_tracks = True):
+                   get_tracks = False):
     
     # Connect to my spotify app
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=os.environ.get('spotify_client_id'),
