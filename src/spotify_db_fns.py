@@ -94,7 +94,7 @@ def removed_from_spotify(engine, given_ids, id_type):
     
     for given_id in given_ids[f'{id_type}_Id']:
         # Query to update table
-        sql_query = f'UPDATE Music_{id_type}s Removed_{id_type} = 1 WHERE {id_type}_Id = "{given_id}"'
+        sql_query = f'UPDATE Music_{id_type}s SET Removed_{id_type} = 1 WHERE {id_type}_Id = "{given_id}"'
         
         # Run query
         with engine.begin() as cnx:
