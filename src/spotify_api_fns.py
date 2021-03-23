@@ -92,7 +92,7 @@ def get_artist_info(artist_id,
         ar_df_dict = {'removed' : empty_df,
                       'error' : empty_df}
     except HTTPError and spotipy.SpotifyException:
-        print("Artist does not exist. Assume removed from spotify")
+        print(f"Artist id {artist_id} does not exist. Assume removed from spotify")
         ar_df_dict = {'removed' : art_id_df,
                       'error' : art_id_df}
         return ar_df_dict
@@ -171,7 +171,7 @@ def get_album_info(album_id,
         al_df_dict = {'removed' : empty_df,
                       'error' : empty_df}
     except HTTPError and spotipy.SpotifyException:
-        print("Album does not exist. Assume removed from spotify")
+        print(f"Album id {album_id} does not exist. Assume removed from spotify")
         al_df_dict = {'removed' : alb_id_df,
                       'error' : alb_id_df}
         return al_df_dict
@@ -259,7 +259,7 @@ def get_track_info(track_id,
         tr_df_dict = {'removed' : empty_df,
                       'error' : empty_df}
     except HTTPError and spotipy.SpotifyException:
-        print("Album does not exist. Assume removed from spotify")
+        print(f"Track id {track_id} does not exist. Assume removed from spotify")
         tr_df_dict = {'removed' : tra_id_df,
                       'error' : tra_id_df}
         return tr_df_dict
