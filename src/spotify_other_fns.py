@@ -223,7 +223,7 @@ def update_tracks(engine, update_artists = False):
      # If artist has been removed from spotify
     if not tracks_dict['removed'].empty:
         print('Mark as removed')
-        removed_from_spotify(engine, tracks_dict['removed'], 'Album')
+        removed_from_spotify(engine, tracks_dict['removed'], 'Track')
     
     return
 
