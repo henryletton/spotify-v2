@@ -89,7 +89,7 @@ def update_artists(engine, update_albums = True):
     engine.connect()
     
     # If no error then store information
-    if not artists_dict['artist_details_df'].empty:
+    if 'artist_details_df' in artists_dict.keys():
         
         df_to_sql_db(engine = engine,
              df_write = artists_dict['artist_details_df'],
@@ -114,7 +114,7 @@ def update_artists(engine, update_albums = True):
                  table_name = "Music_Artist_Album_Mapping")
         
     # If artist has been removed from spotify
-    if not artists_dict['removed'].empty:
+    if 'removed' in artists_dict.keys() and not artists_dict['removed'].empty:
         print('Mark as removed')
         removed_from_spotify(engine, artists_dict['removed'], 'Artist')
     
@@ -140,7 +140,7 @@ def update_albums(engine, update_tracks = False):
     engine.connect()
     
     # If no error then store information
-    if not albums_dict['album_details_df'].empty:
+    if 'album_details_df' in albums_dict.keys():
         
         df_to_sql_db(engine = engine,
                      df_write = albums_dict['album_details_df'],
@@ -165,7 +165,7 @@ def update_albums(engine, update_tracks = False):
                  table_name = "Music_Album_Track_Mapping")
         
     # If artist has been removed from spotify
-    if not albums_dict['removed'].empty:
+    if 'removed' in albums_dict.keys() and not albums_dict['removed'].empty:
         print('Mark as removed')
         removed_from_spotify(engine, albums_dict['removed'], 'Album')
     
@@ -191,7 +191,7 @@ def update_tracks(engine, update_artists = False):
     engine.connect()
     
     # If no error then store information
-    if not tracks_dict['track_details_df'].empty:
+    if 'track_details_df' in tracks_dict.keys():
             
         df_to_sql_db(engine = engine,
              df_write = tracks_dict['track_details_df'],
@@ -221,7 +221,7 @@ def update_tracks(engine, update_artists = False):
 
             
      # If artist has been removed from spotify
-    if not tracks_dict['removed'].empty:
+    if 'removed' in tracks_dict.keys() and not tracks_dict['removed'].empty:
         print('Mark as removed')
         removed_from_spotify(engine, tracks_dict['removed'], 'Track')
     
