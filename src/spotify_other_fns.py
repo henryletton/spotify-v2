@@ -10,6 +10,7 @@
 #%% Import any modules required for the functions
 from src.spotify_api_fns import get_recently_played_df, get_artist_info, get_album_info, get_track_info
 from src.spotify_db_fns import df_to_sql_db, sql_db_to_df, removed_from_spotify
+from src.spotify_playlist_fns import update_playlist
 
 #%% Consolidate a list of get_info dictionaries
 def consolidate_dict_list(dict_list):
@@ -34,6 +35,9 @@ def store_recently_played(engine, get_dfs = False):
     
     # Get recently played as dictionary of dataframes
     dataframe_dict = get_recently_played_df()
+    
+    # Update Recently Played playlist
+    update_playlist("50 Recently Played Songs", dataframe_dict['rec_tracks']['Track_Id'].tolist())
     
     #Store each dataframe in turn
     df_to_sql_db(engine = engine,
