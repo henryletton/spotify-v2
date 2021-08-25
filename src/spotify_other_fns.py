@@ -36,9 +36,6 @@ def store_recently_played(engine, get_dfs = False):
     # Get recently played as dictionary of dataframes
     dataframe_dict = get_recently_played_df()
     
-    # Update Recently Played playlist
-    update_playlist("50 Recently Played Songs", dataframe_dict['rec_tracks']['Track_Id'].tolist())
-    
     #Store each dataframe in turn
     df_to_sql_db(engine = engine,
                  df_write = dataframe_dict['rec_tracks'],
@@ -68,6 +65,9 @@ def store_recently_played(engine, get_dfs = False):
                  df_write = dataframe_dict['map_al_ar'],
                  table_name = "Music_Artist_Album_Mapping")
     
+    # Update Recently Played playlist
+    update_playlist("50 Recently Played Songs", dataframe_dict['rec_tracks']['Track_Id'].tolist())
+
     # Dataframe dict can be output if specified
     if get_dfs:
         return dataframe_dict
