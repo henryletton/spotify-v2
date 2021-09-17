@@ -51,6 +51,17 @@ WHERE Spotify_Plays IS NULL
 AND iTunes_Plays >= 5;
 """)
 
+# =============================================================================
+# Playlist of songs played on this day in previous years (OneDrive "photos On This Day")
+# =============================================================================
+sql_update_playlist(engine, "On This Day", """
+SELECT Track_Id 
+    FROM `Music_Track_Listens`
+        WHERE MONTH(DateTime) = MONTH(curdate())
+        AND DAY(DateTime) = DAY(curdate())
+        AND DATE(DateTime) != curdate();
+""")
+
 
 # Log end of playlist refresh
 log_process(engine, "Spotify", "Refresh Playlists", "End")
