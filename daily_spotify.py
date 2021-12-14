@@ -21,8 +21,8 @@ log_process(engine, "Spotify", "Refresh Playlists", "Start")
 # =============================================================================
 
 playlist_total_plays(engine, "Spotify Library", 1)
-playlist_total_plays(engine, "2+ Listens", 2)
 playlist_total_plays(engine, "5+ Listens", 5)
+playlist_total_plays(engine, "10+ Listens", 10)
 
 
 # =============================================================================
