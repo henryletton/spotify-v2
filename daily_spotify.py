@@ -22,8 +22,11 @@ log_process(engine, "Spotify", "Refresh Playlists", "Start")
 
 playlist_total_plays(engine, "Spotify Library", 1)
 playlist_total_plays(engine, "5+ Listens", 5)
-playlist_total_plays(engine, "10+ Listens", 10)
 
+sql_update_playlist(engine, "Most Listens 3000", """
+SELECT * FROM Music_Track_Plays
+LIMIT 3000;
+""")
 
 # =============================================================================
 # Playlist of songs I listened 5+ times in iTunes, but neve on Spotify
