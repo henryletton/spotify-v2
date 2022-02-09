@@ -63,3 +63,21 @@ FROM `Music_Track_Listens`
 GROUP BY Track_Id
 ORDER BY Plays DESC;
 
+/*Combined data to use in a dashboard*/
+CREATE VIEW Music_Dashboard AS
+	SELECT t.*, 
+		l.DateTime, l.Plays, l.Skips, l.Source,
+		al.Album_Name, al.Release_Date, al.Total_Tracks, al.Album_Type, al.Label,
+		ar.Artist_Name, ar.Artist_Popularity, ar.Total_Followers
+	FROM `Music_Tracks` AS t
+	INNER JOIN `Music_Track_Listens` as l
+		ON t.Track_Id = l.Track_Id
+	LEFT JOIN `Music_Album_Track_Mapping` as alt
+		ON t.Track_Id = alt.Track_Id
+	LEFT JOIN `Music_Albums` as al
+		ON alt.Album_Id = al.Album_Id
+	LEFT JOIN `Music_Artist_Track_Mapping` as art
+		ON t.Track_Id = art.Track_Id
+	LEFT JOIN `Music_Artists` as ar
+		ON art.Artist_Id = ar.Artist_Id;
+
