@@ -161,7 +161,7 @@ def playlist_total_plays(engine,
     
     Music_Track_Plays = Music_Track_Plays[Music_Track_Plays['Plays'] >= min_plays]
     
-    update_playlist(playlist_name, Music_Track_Plays['Track_Id'], "add_new")
+    update_playlist(playlist_name, Music_Track_Plays['Track_Id'], "add_remove")
     
     return
 

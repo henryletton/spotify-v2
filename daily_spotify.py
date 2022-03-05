@@ -20,7 +20,7 @@ log_process(engine, "Spotify", "Refresh Playlists", "Start")
 # Refresh all smart playlists related to track listens
 # =============================================================================
 
-playlist_total_plays(engine, "Spotify Library", 1)
+playlist_total_plays(engine, "Spotify Library", 10)
 playlist_total_plays(engine, "5+ Listens", 5)
 
 sql_update_playlist(engine, "Most Listens 3000", """
