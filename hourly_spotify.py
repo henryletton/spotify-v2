@@ -22,8 +22,8 @@ log_process(engine, "Spotify", "Recently Played", "Start")
 try:
     store_recently_played(engine)
     log_process(engine, "Spotify", "Recently Played", "End")
-except:
-    log_process(engine, "Spotify", "Recently Played", "Error")
+except Exception as e:
+    log_process(engine, "Spotify", "Recently Played", "Error - "+repr(e))
 
 # =============================================================================
 # Update artist information
@@ -32,8 +32,8 @@ log_process(engine, "Spotify", "Update Artists", "Start")
 try:
     update_artists(engine)
     log_process(engine, "Spotify", "Update Artists", "End")
-except:
-    log_process(engine, "Spotify", "Update Artists", "Error")
+except Exception as e:
+    log_process(engine, "Spotify", "Update Artists", "Error - "+repr(e))
 
 # =============================================================================
 # Update album information
@@ -42,8 +42,8 @@ log_process(engine, "Spotify", "Update Albums", "Start")
 try:
     update_albums(engine)
     log_process(engine, "Spotify", "Update Albums", "End")
-except:
-    log_process(engine, "Spotify", "Update Albums", "Error")
+except Exception as e:
+    log_process(engine, "Spotify", "Update Albums", "Error - "+repr(e))
 
 # =============================================================================
 # Update track information
@@ -52,8 +52,8 @@ log_process(engine, "Spotify", "Update Tracks", "Start")
 try:
     update_tracks(engine)
     log_process(engine, "Spotify", "Update Tracks", "End")
-except:
-    log_process(engine, "Spotify", "Update Tracks", "Error")
+except Exception as e:
+    log_process(engine, "Spotify", "Update Tracks", "Error - "+repr(e))
 
 # =============================================================================
 # Note: Warnings appear about lost mysql connection.
