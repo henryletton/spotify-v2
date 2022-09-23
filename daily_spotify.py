@@ -25,7 +25,17 @@ playlist_total_plays(engine, "5+ Listens", 5)
 
 sql_update_playlist(engine, "Most Listens 3000", """
 SELECT * FROM Music_Track_Plays
-LIMIT 3000;
+	WHERE plays > (
+	SELECT MIN(plays) FROM (
+		SELECT *,
+    	RANK() OVER (
+        	ORDER BY plays DESC
+    	) my_rank
+		FROM
+    	Music_Track_Plays
+		LIMIT 3000
+		) AS subtable
+	);
 """)
 
 # =============================================================================
